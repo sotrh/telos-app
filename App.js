@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, FlatList, Platform } from 'react-native';
 
 export default class App extends Component {
   constructor(props) {
@@ -41,18 +41,19 @@ export default class App extends Component {
   renderSeparator = () => {
     return (
       <View 
-        style={{
-          height: 1,
-          width: '100%',
-          backgroundColor: '#CED0CE',
-        }}
+        style={styles.separator}
       />
     )
   }
 
   render() {
     return (
-      <View style={styles.listItem}>
+      <View style={styles.container}>
+
+        {/* Todo: Figure out how to get StatusBar working */}
+        <View style={styles.statusBar}></View>
+
+        {/* This is where the apps are displayed */}
         <FlatList
           style={styles.list}
           data={this.state.data}
@@ -84,5 +85,17 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-  }
+    margin: 10,
+  },
+
+  statusBar: {
+    backgroundColor: 'orange',
+    height: Platform.OS === 'ios' ? 20 : StatusBar.currentHeight,
+  },
+
+  separator: {
+    height: 1,
+    width: '100%',
+    backgroundColor: '#CED0CE',
+  },
 });
