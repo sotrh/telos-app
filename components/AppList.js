@@ -11,6 +11,7 @@ export default class AppList extends React.Component {
 
         this.apps = [
             { name: "Example" },
+            { name: "Recipes" },
         ]
     }
 
